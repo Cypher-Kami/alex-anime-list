@@ -1,25 +1,23 @@
 name: continuos integration workflow
 on:
-  push:
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
-    strategy:
-      matrix:
-        node-version: 25.x
+    runs-on: ubuntu-latest
+    environment: Build
     steps:
       - uses: actions/checkout@v4
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
-      - name: Install dependencies
-        run: pnpm install
-        run: pnpm lint
-        run: pnpm test
+          node-version: 22.x
+      - run: pnpm install
+      - run: pnpm lint
+      - run: pnpm test
