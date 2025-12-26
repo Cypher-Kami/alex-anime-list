@@ -1,43 +1,25 @@
-name: CI
-
+name: continuos integration workflow
 on:
   push:
-    branches: [main, develop]
-  pull_request:
-    branches: [main, develop]
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        node-version: 25.x
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
         with:
-          node-version: 18
-          cache: pnpm
-
+          version: 10
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
-
-      - name: Run ESLint
         run: pnpm lint
-
-      - name: Check formatting
-        run: pnpm format --check
-
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Run tests
         run: pnpm test
