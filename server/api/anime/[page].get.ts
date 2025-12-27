@@ -4,9 +4,10 @@ interface JikanResponse<T> {
   data: T
 }
 
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (event) => {
+  const page = event?.context?.params?.page ?? '1';
   const response = await $fetch<JikanResponse<Anime[]>>(
-    'https://api.jikan.moe/v4/anime?limit=24&page=1'
+    `https://api.jikan.moe/v4/anime?limit=24&page=${page}`
   )
 
   return response.data

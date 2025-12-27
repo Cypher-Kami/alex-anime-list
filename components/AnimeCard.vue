@@ -16,7 +16,6 @@ const shortSynopsis = computed(() => {
     : anime.synopsis
 })
 
-console.log(anime);
 </script>
 
 <template>
