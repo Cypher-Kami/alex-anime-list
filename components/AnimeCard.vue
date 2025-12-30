@@ -69,12 +69,12 @@ const shortSynopsis = computed(() => {
       </div>
 
       <!-- Acción -->
-      <NuxtLink
-        v-if="anime.url"
-        :to="anime.url"
-        target="_blank"
-        class="mt-auto text-sm font-medium text-primary hover:underline"
-      >
+        <NuxtLink
+            v-if="anime.mal_id"
+            :to="`/anime/${anime.mal_id}`"
+            target="_blank"
+            class="mt-auto text-sm font-medium text-primary hover:underline"
+        >
         See More
       </NuxtLink>
     </div>

@@ -1,14 +1,22 @@
 export interface Anime {
-  mal_id: number
-  title: string
-  images: {
-    webp: {
-      image_url: string
+    mal_id: number
+    title: string
+    images: {
+        webp: {
+            image_url: string
+        }
     }
-  }
-  synopsis: string | null
-  url: string | null
-  genres: { name: string }[]
-  score: number | null
-  episodes: number | null
+    synopsis: string | null
+    url: string | null
+    genres: { name: string }[]
+    score: number | null
+    episodes: number | null
+}
+
+export interface AnimeDetail extends Anime {
+    background: string | null
+    year: number | null
+    status: string
+    rating: string | null
+    duration: string | null
 }
