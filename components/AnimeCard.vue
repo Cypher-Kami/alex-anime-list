@@ -19,7 +19,7 @@ const shortSynopsis = computed(() => {
 </script>
 
 <template>
-  <div class="m-4 flex bg-base-100 border border-base-300 rounded-lg overflow-hidden bg-gray-500">
+  <div class="m-4 flex bg-base-100 border-gray-500/20 rounded-md overflow-hidden bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
 
     <!-- Imagen -->
     <img
@@ -33,7 +33,7 @@ const shortSynopsis = computed(() => {
     <div class="p-4 flex flex-col gap-2">
 
       <!-- Título -->
-      <h3 class="font-semibold leading-tight">
+      <h3 class="text-gray-900/60 text-md font-semibold">
         {{ anime.title }}
       </h3>
 
@@ -53,7 +53,7 @@ const shortSynopsis = computed(() => {
       </div>
 
       <!-- Sinopsis -->
-      <p class="text-sm text-base-content/70 line-clamp-4">
+      <p class="text-xs text-base-content/60 text-gray-800/60 break-words whitespace-normal max-w-xs">
         {{ shortSynopsis }}
       </p>
 
@@ -62,7 +62,7 @@ const shortSynopsis = computed(() => {
         <span
           v-for="genre in anime.genres"
           :key="genre.name"
-          class="badge badge-soft badge-primary text-xs"
+          class="badge badge-primary text-xs"
         >
           {{ genre.name }}
         </span>

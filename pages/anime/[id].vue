@@ -3,12 +3,12 @@ import HeadlineText from '~/components/HeadlineText.vue'
 import AnimeCard from '~/components/AnimeCard.vue'
 import Pagination from '~/components/Pagination.vue';
 import ErrorAlert from '~/components/ErrorAlert.vue';
-import type { Anime } from '~/types/anime';
+import type { PaginatedAnimeResponse } from '~/types/paginatedAnimeResponse';
 
 const route = useRoute();
 const page = computed(() => route.params.page);
-console.log(page);
-const { data: animes, pending, error } = await useFetch<Anime[]>(() => `/api/anime/${page.value}`);
+const { data: response, pending, error } = await useFetch<PaginatedAnimeResponse>(() => `/api/anime/${page.value}`);
+console.log(response);
 </script>
 
 <template>
@@ -28,14 +28,14 @@ const { data: animes, pending, error } = await useFetch<Anime[]>(() => `/api/ani
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
     >
       <AnimeCard
-          v-for="anime in animes"
+          v-for="anime in response?.anime"
           :key="anime.mal_id"
           :anime="anime"
       />
     </div>
 
     <div class="flex justify-end mt-8">
-      <Pagination />
+      <Pagination :pagination="response?.pagination" />
     </div>
   </div>
 </template>
