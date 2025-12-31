@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import HeadlineText from '~/components/HeadlineText.vue'
 import AnimeCard from '~/components/AnimeCard.vue'
+import Loading from '~/components/Loading.vue';
 import Pagination from '~/components/Pagination.vue';
 import ErrorAlert from '~/components/ErrorAlert.vue';
 import type { PaginatedAnimeResponse } from '~/types/paginatedAnimeResponse';
@@ -19,8 +20,8 @@ console.log(response);
   <div class="container-full mx-auto">
     <HeadlineText />
 
-    <div v-if="pending" class="text-center">
-      Cargando...
+    <div v-if="pending" class="text-center mt-4">
+      <Loading />
     </div>
 
     <div v-else-if="error" class="text-center text-red-500">
