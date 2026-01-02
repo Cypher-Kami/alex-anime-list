@@ -11,9 +11,14 @@ export default defineNuxtConfig({
 
   app: {
     head: {
+      title: 'Alex Anime List',
       htmlAttrs: {
+        lang: 'en',
         'data-theme': 'light',
       },
+      meta: [
+        { name: 'robots', content: 'index, follow' },
+      ],
     },
   },
 

@@ -33,11 +33,11 @@ const shortSynopsis = computed(() => {
 
     <div class="p-4 flex flex-col gap-2">
 
-      <h3 class="text-gray-900/60 text-md font-semibold">
+      <h3 class="text-base-content text-md font-semibold">
         {{ anime.title }}
       </h3>
 
-      <div class="flex items-center gap-1 text-sm text-gray-500">
+      <div class="flex items-center gap-1 text-sm text-base-content/70">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="14"
@@ -51,7 +51,7 @@ const shortSynopsis = computed(() => {
         <span>{{ anime.score ?? 'N/A' }}</span>
       </div>
 
-      <p class="text-xs text-base-content/60 text-gray-800/60 break-words whitespace-normal max-w-xs">
+      <p class="text-xs text-base-content/70 break-words whitespace-normal max-w-xs">
         {{ shortSynopsis }}
       </p>
 

@@ -81,7 +81,7 @@ const { errorMessage } = useApiError(error)
             {{ anime.title }}
           </h1>
 
-          <div class="flex flex-wrap gap-6 text-sm text-gray-200">
+          <div class="flex flex-wrap gap-6 text-sm text-white/90">
             <div v-if="anime.year" class="flex items-center gap-2">
               <Calendar :size="16" />
               <span>{{ anime.year }}</span>
@@ -111,7 +111,7 @@ const { errorMessage } = useApiError(error)
       <h2 class="text-2xl font-semibold mb-4">
         Synopsis
       </h2>
-      <p class="text-base-content/80 leading-relaxed text-lg">
+      <p class="text-base-content leading-relaxed text-lg">
         {{ anime.synopsis }}
       </p>
     </section>
@@ -122,7 +122,7 @@ const { errorMessage } = useApiError(error)
         Episodes
       </h2>
 
-      <div v-if="episodes.length === 0" class="text-base-content/60">
+      <div v-if="episodes.length === 0" class="text-base-content/70">
         No episodes available.
       </div>
 
@@ -141,13 +141,13 @@ const { errorMessage } = useApiError(error)
               </span>
               <span
                 v-if="episode.title"
-                class="block text-sm text-base-content/60"
+                class="block text-sm text-base-content/70"
               >
                 {{ episode.title }}
               </span>
             </div>
 
-            <span class="text-xs text-base-content/50">
+            <span class="text-xs text-base-content/70">
               {{ formatDate(episode.aired) }}
             </span>
           </div>
@@ -168,7 +168,7 @@ const { errorMessage } = useApiError(error)
         <!-- Close -->
         <button
           @click="closeModal"
-          class="absolute top-4 right-4 text-base-content/60
+          class="absolute top-4 right-4 text-base-content/70
                  hover:text-base-content"
         >
           <X :size="20" />
@@ -193,11 +193,11 @@ const { errorMessage } = useApiError(error)
             Episode {{ episodeDetail.mal_id }}
           </h3>
 
-          <p v-if="episodeDetail.title" class="text-base-content/80">
+          <p v-if="episodeDetail.title" class="text-base-content">
             {{ episodeDetail.title }}
           </p>
 
-          <div class="flex justify-between items-center text-sm text-base-content/60">
+          <div class="flex justify-between items-center text-sm text-base-content/70">
             <span>
               {{ formatDate(episodeDetail.aired) }}
             </span>
@@ -205,14 +205,14 @@ const { errorMessage } = useApiError(error)
 
           <p
             v-if="episodeDetail.synopsis"
-            class="text-sm text-base-content/80"
+            class="text-sm text-base-content"
           >
             {{ episodeDetail.synopsis }}
           </p>
 
           <div
             v-if="episodeDetail.title_japanese"
-            class="text-sm text-base-content/60"
+            class="text-sm text-base-content/70"
           >
             <span class="block text-xs uppercase tracking-wide mb-1">
               Japanese title

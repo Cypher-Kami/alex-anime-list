@@ -31,7 +31,7 @@ function goToPage(page: number) {
     <button
       type="button"
       class="min-h-9.5 min-w-9.5 py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5
-             text-sm rounded-lg text-gray-800 hover:bg-gray-100
+             text-sm rounded-lg text-base-content hover:bg-base-200
              disabled:opacity-50 disabled:pointer-events-none"
       :disabled="props.pagination.current_page <= 1"
       aria-label="Previous"
@@ -58,10 +58,10 @@ function goToPage(page: number) {
         :key="page"
         type="button"
         class="min-h-9.5 min-w-9.5 flex justify-center items-center py-2 px-3 text-sm rounded-lg
-               hover:bg-gray-100"
+               hover:bg-base-200"
         :class="page === props.pagination.current_page
-          ? 'bg-gray-200 font-semibold'
-          : 'text-gray-800'"
+          ? 'bg-base-300 font-semibold text-base-content'
+          : 'text-base-content'"
         :aria-current="page === props.pagination.current_page ? 'page' : undefined"
         @click="goToPage(page)"
       >
@@ -72,7 +72,7 @@ function goToPage(page: number) {
     <button
       type="button"
       class="min-h-9.5 min-w-9.5 py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5
-             text-sm rounded-lg text-gray-800 hover:bg-gray-100
+             text-sm rounded-lg text-base-content hover:bg-base-200
              disabled:opacity-50 disabled:pointer-events-none"
       :disabled="!props.pagination.has_next_page"
       aria-label="Next"
