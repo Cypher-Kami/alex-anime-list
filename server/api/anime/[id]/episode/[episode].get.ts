@@ -5,12 +5,35 @@ interface JikanEpisodeResponse<T> {
 }
 
 export default defineEventHandler(async (event) => {
-    const animeId = event.context.params?.id
-    const episode = event.context.params?.episode
+  const animeId = Number(event.context.params?.id)
+  const episodeNumber = Number(event.context.params?.episode)
 
-    const response = await $fetch<JikanEpisodeResponse<Episode>>(
-        `https://api.jikan.moe/v4/anime/${animeId}/episodes/${episode}`
+  if (!Number.isInteger(animeId) || animeId < 1) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Invalid anime id',
+    })
+  }
+
+  if (!Number.isInteger(episodeNumber) || episodeNumber < 1) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Invalid episode number',
+    })
+  }
+
+  let response: JikanEpisodeResponse<Episode>
+
+  try {
+    response = await $fetch(
+      `https://api.jikan.moe/v4/anime/${animeId}/episodes/${episodeNumber}`
     )
+  } catch {
+    throw createError({
+      statusCode: 404,
+      statusMessage: 'Episode not found',
+    })
+  }
 
-    return response.data
+  return response.data
 })

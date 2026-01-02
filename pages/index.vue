@@ -5,6 +5,7 @@ import Loading from '~/components/Loading.vue';
 import Pagination from '~/components/Pagination.vue';
 import ErrorAlert from '~/components/ErrorAlert.vue';
 import type { PaginatedAnimeResponse } from '~/types/paginatedAnimeResponse';
+import { useApiError } from '~/composables/useApiError'
 
 const route = useRoute()
 
@@ -13,6 +14,7 @@ const page = computed(() => {
   return Number.isNaN(value) || value < 1 ? 1 : value
 })
 const { data: response, pending, error } = await useFetch<PaginatedAnimeResponse>(() => `/api/anime?page=${page.value}`)
+const { errorMessage } = useApiError(error)
 </script>
 
 <template>
@@ -23,9 +25,10 @@ const { data: response, pending, error } = await useFetch<PaginatedAnimeResponse
       <Loading />
     </div>
 
-    <div v-else-if="error" class="text-center text-red-500">
-        <ErrorAlert :error-message="error.statusMessage ?? null" />
-    </div>
+    <ErrorAlert
+      v-else-if="errorMessage"
+      :error-message="errorMessage"
+    />
 
     <div
       v-else

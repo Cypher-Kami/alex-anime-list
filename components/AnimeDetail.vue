@@ -4,6 +4,8 @@ import type { Episode } from '~/types/episode'
 
 import { Calendar, Film, Star, Clock, X } from 'lucide-vue-next'
 import type { EpisodeDetail } from '~/types/EpisodeDetail';
+import { useApiError } from '~/composables/useApiError'
+import Loading from '~/components/Loading.vue';
 
 const props = defineProps<{
   anime: AnimeDetail
@@ -50,6 +52,7 @@ const {
     immediate: false,
   }
 )
+const { errorMessage } = useApiError(error)
 
 </script>
 
@@ -173,12 +176,14 @@ const {
 
         <!-- Loading -->
         <div v-if="pending" class="py-16 text-center">
-          Loading episode…
+          <Loading />
         </div>
 
         <!-- Error -->
-        <div v-else-if="error" class="py-16 text-center text-red-500">
-          Failed to load episode.
+        <div v-else-if="errorMessage" class="py-12 text-center">
+          <p class="text-red-500 mb-4">
+            {{ errorMessage }}
+          </p>
         </div>
 
         <!-- Content -->
