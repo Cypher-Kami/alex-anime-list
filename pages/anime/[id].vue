@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import HeadlineText from '~/components/HeadlineText.vue'
-import AnimeCard from '~/components/AnimeCard.vue'
 import Loading from '~/components/Loading.vue';
 import Pagination from '~/components/Pagination.vue';
 import ErrorAlert from '~/components/ErrorAlert.vue';
@@ -10,7 +9,6 @@ const route = useRoute();
 const id = computed(() => route.params.id);
 
 const { data: response, pending, error } = await useFetch<AnimeDetailResponse>(() => `/api/anime/${id.value}`);
-console.log(response.value?.episodes, 'detail');
 </script>
 
 <template>

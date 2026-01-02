@@ -103,7 +103,7 @@ console.log(episodeDetail, 'ep detail');
     </section>
 
     <!-- SYNOPSIS -->
-    <section class="max-w-4xl mb-20">
+    <section class="max-w-6xl mb-20">
       <h2 class="text-2xl font-semibold mb-4">
         Synopsis
       </h2>
@@ -113,7 +113,7 @@ console.log(episodeDetail, 'ep detail');
     </section>
 
     <!-- EPISODES -->
-    <section class="max-w-4xl">
+    <section class="max-w-6xl">
       <h2 class="text-2xl font-semibold mb-8">
         Episodes
       </h2>

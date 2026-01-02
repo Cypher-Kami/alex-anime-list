@@ -13,7 +13,6 @@ const page = computed(() => {
   return Number.isNaN(value) || value < 1 ? 1 : value
 })
 const { data: response, pending, error } = await useFetch<PaginatedAnimeResponse>(() => `/api/anime?page=${page.value}`)
-console.log(response);
 </script>
 
 <template>
