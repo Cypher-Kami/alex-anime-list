@@ -70,6 +70,7 @@ const shortSynopsis = computed(() => {
             :to="`/anime/${anime.mal_id}`"
             target="_blank"
             class="mt-auto text-sm font-medium text-primary hover:underline"
+            aria-label="View details of {{ anime.title }}"
         >
         See More
       </NuxtLink>

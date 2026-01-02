@@ -18,7 +18,11 @@ export default defineNuxtConfig({
       },
       meta: [
         { name: 'robots', content: 'index, follow' },
-      ],
+        { name: 'description',
+        content:
+          'Browse anime titles, episodes, ratings and detailed information using the Jikan API.',
+        },
+        ],
     },
   },
 
