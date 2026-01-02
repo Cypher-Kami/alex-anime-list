@@ -21,23 +21,22 @@ const shortSynopsis = computed(() => {
 <template>
   <div class="m-4 flex bg-base-100 border-gray-500/20 rounded-md overflow-hidden bg-white shadow-md hover:shadow-lg transition-shadow duration-300">
 
-    <!-- Imagen -->
-    <img
+    <NuxtImg
       :src="anime.images.webp.image_url"
       :alt="anime.title"
       class="w-32 sm:w-36 object-cover"
       loading="lazy"
+      format="webp"
+      preset="hero"
+      sizes="(max-width: 768px) 100vw, 1200px"
     />
 
-    <!-- Contenido -->
     <div class="p-4 flex flex-col gap-2">
 
-      <!-- Título -->
       <h3 class="text-gray-900/60 text-md font-semibold">
         {{ anime.title }}
       </h3>
 
-      <!-- Score -->
       <div class="flex items-center gap-1 text-sm text-gray-500">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -52,12 +51,10 @@ const shortSynopsis = computed(() => {
         <span>{{ anime.score ?? 'N/A' }}</span>
       </div>
 
-      <!-- Sinopsis -->
       <p class="text-xs text-base-content/60 text-gray-800/60 break-words whitespace-normal max-w-xs">
         {{ shortSynopsis }}
       </p>
 
-      <!-- Géneros -->
       <div class="flex flex-wrap gap-1">
         <span
           v-for="genre in anime.genres"
@@ -68,7 +65,6 @@ const shortSynopsis = computed(() => {
         </span>
       </div>
 
-      <!-- Acción -->
         <NuxtLink
             v-if="anime.mal_id"
             :to="`/anime/${anime.mal_id}`"

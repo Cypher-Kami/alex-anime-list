@@ -35,7 +35,6 @@ function closeModal() {
   selectedEpisode.value = null
 }
 
-/* ---------- fetch episode detail ---------- */
 const {
   data: episodeDetail,
   pending,
@@ -52,7 +51,6 @@ const {
   }
 )
 
-console.log(episodeDetail, 'ep detail');
 </script>
 
 <template>
@@ -61,10 +59,13 @@ console.log(episodeDetail, 'ep detail');
     <!-- HERO -->
     <section class="mb-16">
       <div class="relative h-[460px] rounded-2xl overflow-hidden">
-        <img
-          :src="anime.images.webp.large_image_url"
+        <NuxtImg
+          :src="anime.images.webp.image_url"
           :alt="anime.title"
           class="absolute inset-0 w-full h-full object-cover"
+          preset="hero"
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, 1200px"
         />
 
         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -79,22 +80,22 @@ console.log(episodeDetail, 'ep detail');
 
           <div class="flex flex-wrap gap-6 text-sm text-gray-200">
             <div v-if="anime.year" class="flex items-center gap-2">
-              <Calendar size="16" />
+              <Calendar :size="16" />
               <span>{{ anime.year }}</span>
             </div>
 
             <div v-if="anime.episodes" class="flex items-center gap-2">
-              <Film size="16" />
+              <Film :size="16" />
               <span>{{ anime.episodes }} episodes</span>
             </div>
 
             <div v-if="anime.rating" class="flex items-center gap-2">
-              <Star size="16" />
+              <Star :size="16" />
               <span>{{ anime.rating }}</span>
             </div>
 
             <div v-if="anime.duration" class="flex items-center gap-2">
-              <Clock size="16" />
+              <Clock :size="16" />
               <span>{{ anime.duration }}</span>
             </div>
           </div>
@@ -167,7 +168,7 @@ console.log(episodeDetail, 'ep detail');
           class="absolute top-4 right-4 text-base-content/60
                  hover:text-base-content"
         >
-          <X size="20" />
+          <X :size="20" />
         </button>
 
         <!-- Loading -->
@@ -195,14 +196,6 @@ console.log(episodeDetail, 'ep detail');
             <span>
               {{ formatDate(episodeDetail.aired) }}
             </span>
-
-            <div
-              v-if="episodeDetail.score"
-              class="flex items-center gap-1 font-medium text-yellow-500"
-            >
-              <Star size="14" />
-              {{ episodeDetail.score }}
-            </div>
           </div>
 
           <p

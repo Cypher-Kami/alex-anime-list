@@ -1,13 +1,47 @@
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint', '@nuxt/image', '@nuxtjs/tailwindcss'],
-  css: ["~/assets/css/main.css"],
+
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/image',
+    '@nuxtjs/tailwindcss',
+  ],
+
+  css: ['~/assets/css/main.css'],
+
   app: {
     head: {
       htmlAttrs: {
-        'data-theme': 'light'
-      }
-    }
-  }
+        'data-theme': 'light',
+      },
+    },
+  },
+
+  routeRules: {
+    '/api/anime/**': {
+      cache: {
+        maxAge: 60 * 60, 
+        staleMaxAge: 60 * 5, 
+      },
+    },
+  },
+
+  image: {
+    provider: 'auto',
+    format: ['webp', 'jpeg'],
+    presets: {
+      animeCard: {
+        modifiers: {
+          width: 400,
+          quality: 80,
+        },
+      },
+      hero: {
+        modifiers: {
+          width: 1200,
+          quality: 85,
+        },
+      },
+    },
+  },
 })
