@@ -61,27 +61,36 @@ const { errorMessage } = useApiError(error)
 
     <!-- HERO -->
     <section class="mb-16">
-      <div class="relative h-[460px] rounded-2xl overflow-hidden">
+      <div class="relative h-[460px] rounded-2xl overflow-hidden bg-gradient-to-br from-base-200 to-base-300">
         <NuxtImg
           :src="anime.images.webp.image_url"
           :alt="anime.title"
-          class="absolute inset-0 w-full h-full object-cover"
+          class="absolute inset-0 w-full h-full object-cover blur-xl scale-110"
           preset="hero"
           loading="lazy"
           sizes="(max-width: 768px) 100vw, 1200px"
         />
 
-        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+        <NuxtImg
+          :src="anime.images.webp.image_url"
+          :alt="anime.title"
+          class="relative z-10 h-full object-contain mx-auto"
+          preset="hero"
+          loading="lazy"
+          sizes="(max-width: 768px) 100vw, 1200px"
+        />
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-20"></div>
 
         <div
           class="absolute bottom-6 left-6 right-6 md:left-10 md:right-auto
-                 bg-black/60 backdrop-blur rounded-xl p-6 max-w-3xl"
+                 bg-black/70 backdrop-blur-md rounded-xl p-6 max-w-3xl z-30"
         >
           <h1 class="text-4xl font-bold text-white mb-4">
             {{ anime.title }}
           </h1>
 
-          <div class="flex flex-wrap gap-6 text-sm text-white/90">
+          <div class="flex flex-wrap gap-6 text-sm text-white">
             <div v-if="anime.year" class="flex items-center gap-2">
               <Calendar :size="16" />
               <span>{{ anime.year }}</span>
