@@ -60,7 +60,7 @@ const { errorMessage } = useApiError(error)
   <article class="max-w-6xl mx-auto px-4 pb-24">
 
     <!-- HERO -->
-    <section class="mb-16">
+    <section class="mb-16 mt-6">
       <div class="relative h-[460px] rounded-2xl overflow-hidden bg-gradient-to-br from-base-200 to-base-300">
         <NuxtImg
           :src="anime.images.webp.image_url"
@@ -165,14 +165,18 @@ const { errorMessage } = useApiError(error)
     </section>
   </article>
 
-  <!-- EPISODE MODAL -->
+    <!-- EPISODE MODAL -->
   <teleport to="body">
     <div
       v-if="isOpen"
+      @click="closeModal"
       class="fixed inset-0 z-50 flex items-center justify-center
              bg-black/60 backdrop-blur"
     >
-      <div class="bg-base-100 rounded-2xl w-full max-w-lg p-6 relative">
+      <div 
+        @click.stop
+        class="bg-base-100 rounded-2xl w-full max-w-lg p-6 relative"
+      >
 
         <!-- Close -->
         <button

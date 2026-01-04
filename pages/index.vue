@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import HeadlineText from '~/components/HeadlineText.vue'
+import AppHeader from '~/components/AppHeader.vue'
 import AnimeCard from '~/components/AnimeCard.vue'
 import Loading from '~/components/Loading.vue';
 import Pagination from '~/components/Pagination.vue';
@@ -19,7 +19,7 @@ const { errorMessage } = useApiError(error)
 
 <template>
   <div class="container-full mx-auto">
-    <HeadlineText />
+    <AppHeader />
 
     <div v-if="pending" class="text-center mt-4">
       <Loading />
