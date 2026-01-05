@@ -6,4 +6,5 @@ export interface EpisodeDetail extends Episode {
     synopsis: string | null
     duration: string | null
     aired: string | null
+    title_japanese: string | null
 }
