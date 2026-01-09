@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import AnimeCard from '@/components/AnimeCard.vue'
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 
 const mockAnime = {
   mal_id: 1,
@@ -17,6 +17,18 @@ const mockAnime = {
   url: 'https://myanimelist.net/anime/1',
 }
 
+
+const mockPush = vi.fn()
+vi.stubGlobal('useRouter', () => ({
+  push: mockPush,
+  replace: vi.fn(),
+}))
+
+vi.stubGlobal('useRoute', () => ({
+  params: {},
+  query: {},
+}))
+
 describe('AnimeCard', () => {
   it('renders anime title and image', () => {
     const wrapper = mount(AnimeCard, {
@@ -27,6 +39,10 @@ describe('AnimeCard', () => {
         stubs: {
           NuxtLink: {
             template: '<a><slot /></a>',
+          },
+          NuxtImg: {
+            props: ['src', 'alt'],
+            template: '<img :src="src" :alt="alt" />',
           },
         },
       },
